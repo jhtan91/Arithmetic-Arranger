@@ -10,12 +10,11 @@ def arithmetic_arranger(problems,reveal_ans=None):
     lower_problems=[]*len(problems)
     lower_problems_f=[]*len(problems)
     lines="-"
-    num_lines=[]*len(problems)
-    ans=[]*len(problems)
     total_ans_lines_f=[]
     total_space=[]
     total_space_f=[]
     
+    #Check if the number of problems are more than 5.
     if len(problems)>5:
         arranged_problems="Error: Too many problems."
         
@@ -23,7 +22,9 @@ def arithmetic_arranger(problems,reveal_ans=None):
     
     else:
         pass
-        
+    
+    #Start the loop to join the strings from upper part to upper_problems,
+    #operators to expression_problems, and lower part to lower_problems.
     i=0
     
     for max_numbers in problems:
@@ -33,21 +34,23 @@ def arithmetic_arranger(problems,reveal_ans=None):
         z=split_problems[2]
         total_ans_lines=[]
         
-        #Check if digits more than 4
-        if len(split_problems[0])>4:
+        #Check if digits more than 4 for both top and bottom operands
+        if len(x)>4:
             arranged_problems="Error: Numbers cannot be more than four digits."
             
             return arranged_problems
             
-        elif len(split_problems[2])>4:
+        elif len(z)>4:
             arranged_problems="Error: Numbers cannot be more than four digits."
             
             return arranged_problems
-            
+        
+        #If the value contain none digits, go to except.
+        #If the integer of the top or bottom cannot be added, go to except.    
         try:
-            a = int(split_problems[0])
+            a = int(x)
             a+=1
-            b = int(split_problems[2])
+            b = int(z)
             b+=1
         
         except:
@@ -56,7 +59,6 @@ def arithmetic_arranger(problems,reveal_ans=None):
             return arranged_problems
         
         #Make space for longest numbers
-        
         #For x > z
         if len(x)>len(z):
             
@@ -67,11 +69,11 @@ def arithmetic_arranger(problems,reveal_ans=None):
             #Check operands and do operation
             if y=="+":
                 
-                total=int(split_problems[0])+int(split_problems[2])
+                total=int(x)+int(z)
                 
             elif y=="-":
                 
-                total=int(split_problems[0])-int(split_problems[2])
+                total=int(x)-int(z)
                 
             elif y=="x" or y=="/":
             
@@ -89,11 +91,11 @@ def arithmetic_arranger(problems,reveal_ans=None):
             #Check operands and do operation
             if y=="+":
                 
-                total=int(split_problems[0])+int(split_problems[2])
+                total=int(x)+int(z)
                 
             elif y=="-":
                 
-                total=int(split_problems[0])-int(split_problems[2])
+                total=int(x)-int(z)
                 
             elif y=="x" or y=="/":
             
@@ -111,11 +113,11 @@ def arithmetic_arranger(problems,reveal_ans=None):
             #Check operands and do operation
             if y=="+":
                 
-                total=int(split_problems[0])+int(split_problems[2])
+                total=int(x)+int(z)
                 
             elif y=="-":
                 
-                total=int(split_problems[0])-int(split_problems[2])
+                total=int(x)-int(z)
                 
             elif y=="x" or y=="/":
             
@@ -123,25 +125,32 @@ def arithmetic_arranger(problems,reveal_ans=None):
                 
                 return arranged_problems
         
+        #Empty spaces in front of answer = number of lines - length of string of answer
         ans_space = num_lines - len(str(total))
+        
+        #Join the strings with empty spaces in front
         total_space="".join((" "*ans_space,str(total)))
         upper_problems="".join((" "*u_space,x))
         lower_problems="".join((y," "*l_space,z))
         total_ans_lines="".join((lines*num_lines))
         
+        #Append the strings into the designated array
         upper_problems_f.append(upper_problems)
         lower_problems_f.append(lower_problems)
         total_ans_lines_f.append(total_ans_lines)
         total_space_f.append(total_space)
         
         i=i+1
-            
-    #arranged_problems=np.array([upper_problems_f,lower_problems_f,total_ans_lines_f,total_space_f])
+        
+        #End of loop
+    
+    #Ensure 4 spaces between each problems.
     upper_problems_ff=('    '.join(upper_problems_f))
     lower_problems_ff=('    '.join(lower_problems_f))
     total_ans_lines_ff=('    '.join(total_ans_lines_f))
     total_space_ff=('    '.join(total_space_f))
     
+    #Check if the optional argument exists to reveal the answer.
     if reveal_ans == True:
         arranged_problems=upper_problems_ff+"\n"+lower_problems_ff+"\n"+total_ans_lines_ff+"\n"+total_space_ff
     
