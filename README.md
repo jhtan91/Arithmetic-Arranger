@@ -26,11 +26,11 @@ A few conditions to be met:
 My solution
 ************
 The input problems are in the form of string : (['3200 - 698', '1 - 3801', '4512 - 4', '1230 - 49', '988 + 400'])
-To rearrange the problems, every problem will be split into 5 parts:
+To rearrange the problems, every problem will be split into 5 parts:<br />
 
-  3200    <<< upper_problems
--  698    <<< expression_problems (- or +) + lower_problems
-------    <<< lines "-"
-  2502    <<< total
+|  3200 |   <<< upper_problems <br />
+|-  698 |   <<< expression_problems (- or +) + lower_problems <br />
+|------ |   <<< lines "-" <br />
+|  2502 |   <<< total <br />
   
 join() and .append() are used to join the spaces and the strings without the bracket([]) and comma(,). The rest are if else statements.
